@@ -1,14 +1,13 @@
-import Layout from './components/Layout';
-import './App.css';
+import CustomThemeProvider from "./components/CustomThemeProvider";
+import Layout from "./components/Layout";
 
 function App() {
   return (
-    <div>
-      <Layout>
-        Home Page
-      </Layout> 
-    </div>
+    <CustomThemeProvider>
+      <Layout>Home page</Layout>
+    </CustomThemeProvider>
   );
 }
 
 export default App;
+git 
