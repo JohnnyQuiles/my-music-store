@@ -7,6 +7,7 @@ import Menu from '@mui/material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/system';
+
 const Header = () => {
     return (
         <AppBar position="static">
