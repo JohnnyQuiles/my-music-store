@@ -1,15 +1,15 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 
-const PURPLE = "#6750A4";
 const BLACK = "#1C1B1F";
+const PURPLE = "#6750A4";
 
 const THEME = createTheme({
     palette: {
         primary: {
-            main: PURPLE,
+            main: BLACK,
         },
         secondary: {
-            main: BLACK,
+            main: PURPLE,
         },
     },
     components: {
