@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { useContext } from 'react'
+import { shoppingCartContext } from '../App';
 import AddIcon from '@mui/icons-material/Add';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Button } from '@mui/material';
@@ -9,12 +12,11 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import * as React from 'react';
-
 
 const ProductDisplay = (props) => {
+    const { addToCart } = useContext(shoppingCartContext);
     const {
-        addToCart,
+
         product,
     } = props;
 
