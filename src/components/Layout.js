@@ -1,14 +1,19 @@
-import React from "react";
-import Header from "./Header";
+import { Box } from '@mui/material';
+import React from 'react';
+import Header from '../components/Header';
 
 const Layout = (props) => {
-    const { children } = props;
+    const { children, shoppingCart } = props;
+
     return (
-        <div>
-            <Header />
-            <div>{children}</div>
-        </div>
-    );
+        <Box minWidth={320}>
+            <Header shoppingCart={shoppingCart} />
+            <div>
+                {children}
+            </div>
+        </Box>
+    )
+
 };
 
-export default Layout; 
+export default Layout;
