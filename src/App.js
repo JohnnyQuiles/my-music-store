@@ -13,6 +13,7 @@ function App() {
 
 
   const addToCart = (product) => {
+
     // does this product already exist in the shopping cart?
 
     const productFound = shoppingCart.find(cartItem => cartItem.id === product.id)

@@ -15,6 +15,7 @@ import { Box } from '@mui/system';
 
 const ProductDisplay = (props) => {
     const { addToCart } = useContext(shoppingCartContext);
+
     const {
 
         product,

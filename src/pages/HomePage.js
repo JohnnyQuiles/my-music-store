@@ -28,7 +28,7 @@ const HomePage = () => {
             >
                 {productData.map(product =>
                     <Box m={4} key={product.title} width="375px" maxWidth="100%">
-                        <ProductDisplay product={product}/>
+                        <ProductDisplay product={product} />
                     </Box>
                 )}
             </Box>
