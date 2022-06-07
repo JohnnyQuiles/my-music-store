@@ -1,13 +1,15 @@
 import { Box } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchProductData } from '../dataFetching';
 import Layout from '../components/Layout';
 import ProductDisplay from '../components/ProductDisplay';
 
 
-const HomePage = () => {
+const HomePage = (props) => {
+    const { addToCart, shoppingCart } = props;
+
     const [productData, setProductData] = useState([]);
-    console.log("product data:", productData);
+
 
     // This is what runs after the first render:
     useEffect(() => {
@@ -19,7 +21,7 @@ const HomePage = () => {
     )
 
     return (
-        <Layout>
+        <Layout shoppingCart={shoppingCart}>
             <Box
                 width={1}
                 display="flex"
@@ -28,7 +30,7 @@ const HomePage = () => {
             >
                 {productData.map(product =>
                     <Box m={4} key={product.title} width="375px" maxWidth="100%">
-                        <ProductDisplay product={product} />
+                        <ProductDisplay product={product} addToCart={addToCart} />
                     </Box>
                 )}
             </Box>
