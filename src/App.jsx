@@ -4,6 +4,7 @@ import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import SignInPage from './pages/SignInPage';
 import ShoppingCartProvider from './context/ShoppingCartContext';
+import UserDataProvider from './context/UserContext';
 
 function App() {
   const [page, setPage] = useState('homePage');
@@ -18,15 +19,16 @@ function App() {
         return <HomePage />;
     }
   };
-
   return (
     <CustomThemeProvider>
-      <ShoppingCartProvider>
-        <button type="button" onClick={() => setPage('homePage')}>Home Page</button>
-        <button type="button" onClick={() => setPage('cartPage')}>Cart Page</button>
-        <button type="button" onClick={() => setPage('signInPage')}>Sign In Page</button>
-        {getPage()}
-      </ShoppingCartProvider>
+      <UserDataProvider>
+        <ShoppingCartProvider>
+          <button type="button" onClick={() => setPage('homePage')}>Home Page</button>
+          <button type="button" onClick={() => setPage('cartPage')}>Cart Page</button>
+          <button type="button" onClick={() => setPage('signInPage')}>Sign In Page</button>
+          {getPage()}
+        </ShoppingCartProvider>
+      </UserDataProvider>
     </CustomThemeProvider>
   );
 }

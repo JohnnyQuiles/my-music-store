@@ -17,6 +17,12 @@ const productList = [
   },
 ];
 
+export const fetchProductData = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(productList);
+  }, 1);
+});
+
 const sampleUserData = {
   id: '007',
   firstName: 'John',
@@ -24,12 +30,6 @@ const sampleUserData = {
   email: 'john@email.com',
   favorites: ['124'], // IDs of favorite Products
 };
-
-export const fetchProductData = () => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve(productList);
-  }, 1);
-});
 
 export const logInUserRequest = () => new Promise((resolve) => {
   setTimeout(() => {
