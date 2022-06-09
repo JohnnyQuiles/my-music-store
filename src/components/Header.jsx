@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {
-  AppBar, Badge, Button, IconButton, Toolbar, Typography,
-  Box,
+  AppBar, Badge, Box, Button, IconButton, Toolbar, Typography,
 } from '@mui/material';
-import { shoppingCartContext } from '../context/ShoppingCartContext';
+import React from 'react';
+import { useShoppingCart } from '../context/ShoppingCartContext';
 
 function Header() {
-  const { shoppingCart } = useContext(shoppingCartContext);
+  const { shoppingCart } = useShoppingCart();
 
   const itemQuantity = shoppingCart.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
 
