@@ -1,26 +1,29 @@
 import React, { createContext, useContext, useState } from 'react';
 
-export const userDataContext = createContext();
+const userContext = createContext();
 
-export const useUserData = () => useContext(userDataContext);
+export const useUser = () => useContext(userContext);
 
 // This component is gonna handle everythign that relates to the user data.
 // that way all we have to do is wrap our application with it.
 // and that will allows to have a cleaner app.js file
-function UserDataProvider(props) {
+function UserProvider(props) {
   const { children } = props;
 
-  const [userData, setUserData] = useState();
+  const [user, setUser] = useState();
 
-  const addToUserData = (user) => setUserData(user);
+  const signIn = (userData) => {
+    setUser(userData);
+  };
 
-  const removeUserData = () => setUserData(undefined);
-
+  const signOut = () => {
+    setUser(undefined);
+  };
   return (
-    <userDataContext.Provider value={{ userData, addToUserData, removeUserData }}>
+    <userContext.Provider value={{ user, signIn, signOut }}>
       {children}
-    </userDataContext.Provider>
+    </userContext.Provider>
   );
 }
 
-export default UserDataProvider;
+export default UserProvider;
