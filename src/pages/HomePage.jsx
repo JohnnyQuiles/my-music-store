@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { fetchProductData } from '../dataFetching';
 import Layout from '../components/Layout';
 import ProductDisplay from '../components/ProductDisplay';
@@ -12,8 +12,7 @@ function HomePage() {
     () => {
       fetchProductData()
         .then((data) => setProductData(data))
-        // eslint-disable-next-line no-console
-        .catch((error) => console.log('error', error));
+        .catch((error) => console.log('error: ', error));
     },
     [],
   );
