@@ -2,6 +2,7 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 import ReplayIcon from '@mui/icons-material/Replay';
 import HomeIcon from '@mui/icons-material/Home';
+import { useParams } from 'react-router-dom';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import CartItem from '../components/CartItem';
 import Layout from '../components/Layout';
@@ -30,6 +31,8 @@ function CartPage() {
     emptyCart,
   } = useShoppingCart();
 
+  const { backgroundColor } = useParams();
+
   // We want to display whats in the shopping cart.
   return (
     <Layout shoppingCart={shoppingCart}>
@@ -38,6 +41,7 @@ function CartPage() {
         display="flex"
         flexDirection="column"
         alignItems="center"
+        bgcolor={backgroundColor}
       >
         {shoppingCart.map((cartItem) => (
           <Box p={3} key={cartItem.id} width="100%" maxWidth={500}>

@@ -6,6 +6,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { useUser } from '../context/UserContext';
+import '../index.css';
 
 function Header() {
   const { shoppingCart } = useShoppingCart();
