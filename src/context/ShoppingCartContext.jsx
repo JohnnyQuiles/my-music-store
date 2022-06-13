@@ -81,7 +81,7 @@ function ShoppingCartProvider(props) {
 
   return (
     <shoppingCartContext.Provider value={{
-      hoppingCart, addToCart, removeFromCart, emptyCart,
+      shoppingCart, addToCart, removeFromCart, emptyCart,
     }}
     >
       {children}
