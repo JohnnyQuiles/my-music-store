@@ -3,6 +3,7 @@ import {
   AppBar, Badge, Box, Button, IconButton, Toolbar, Typography,
 } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import { useUser } from '../context/UserContext';
 
@@ -15,14 +16,22 @@ function Header() {
   return (
     <AppBar position="static" color="secondary">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          My Music Store
-        </Typography>
+        <Box sx={{ flexGrow: 1 }}>
+          <Link to="/">
+            <Typography variant="h6" component="div">
+              My Music Store
+            </Typography>
+          </Link>
+        </Box>
         <Box mr={2}>
           {
-          user
-            ? `Hi ${user.firstName}!`
-            : <Button variant="contained" color="primary">Sign In</Button>
+            user
+              ? `Hi ${user.firstName}!`
+              : (
+                <Link to="/sign-in">
+                  <Button variant="contained" color="primary">Sign In</Button>
+                </Link>
+              )
           }
         </Box>
         <IconButton
@@ -30,9 +39,13 @@ function Header() {
           aria-label="Go to shopping cart"
           color="inherit"
         >
-          <Badge badgeContent={itemQuantity} color="primary">
-            <ShoppingCartIcon />
-          </Badge>
+          <Box mr={2}>
+            <Link to="/cart">
+              <Badge badgeContent={itemQuantity} color="primary">
+                <ShoppingCartIcon />
+              </Badge>
+            </Link>
+          </Box>
         </IconButton>
       </Toolbar>
     </AppBar>
