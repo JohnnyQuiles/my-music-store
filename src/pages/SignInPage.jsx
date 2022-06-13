@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { logInUserRequest } from '../dataFetching';
 import Layout from '../components/Layout';
@@ -12,6 +13,11 @@ function SignInPage() {
     password: '',
   });
 
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate('/');
+  }
   const onSubmit = () => {
     logInUserRequest()
       .then((response) => {

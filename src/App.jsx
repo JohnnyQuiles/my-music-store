@@ -16,7 +16,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/sign-in" element={<SignInPage />} />
-              <Route path="/cart/:backgroundColor" element={<CartPage />} />
+              <Route path="/cart" element={<CartPage />} />
             </Routes>
           </ShoppingCartProvider>
         </UserProvider>
