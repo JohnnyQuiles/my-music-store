@@ -2,8 +2,7 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 import ReplayIcon from '@mui/icons-material/Replay';
 import HomeIcon from '@mui/icons-material/Home';
-import { useNavigate } from 'react-router-dom';
-import { useShoppingCart } from '../context/ShoppingCartContext';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../components/CartItem';
 import Layout from '../components/Layout';
 
@@ -26,25 +25,24 @@ import Layout from '../components/Layout';
 // ];
 
 function CartPage() {
-  const {
-    shoppingCart,
-    emptyCart,
-  } = useShoppingCart();
+  // const {
+  //   shoppingCart,
+  //   emptyCart,
+  // } = useShoppingCart();
 
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.shoppingCart);
 
-
-  const navigate = useNavigate();
   // We want to display whats in the shopping cart.
   return (
-    <Layout shoppingCart={shoppingCart}>
-      <Button onClick={() => { navigate('/'); }}>Go back</Button>
+    <Layout>
       <Box
         width={1}
         display="flex"
         flexDirection="column"
         alignItems="center"
       >
-        {shoppingCart.map((cartItem) => (
+        {cart.map((cartItem) => (
           <Box p={3} key={cartItem.id} width="100%" maxWidth={500}>
             <CartItem cartItem={cartItem} />
           </Box>
@@ -58,7 +56,9 @@ function CartPage() {
               fullWidth
               variant="contained"
               startIcon={<ReplayIcon />}
-              onClick={emptyCart}
+              onClick={() => dispatch({
+                type: 'EMPTY_CART',
+              })}
             >
               Empty Cart
             </Button>

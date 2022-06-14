@@ -3,14 +3,18 @@ import {
   AppBar, Badge, Box, Button, IconButton, Toolbar, Typography,
 } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useShoppingCart } from '../context/ShoppingCartContext';
-import { useUser } from '../context/UserContext';
+
 import '../index.css';
 
 function Header() {
-  const { shoppingCart } = useShoppingCart();
-  const { user } = useUser();
+  // const { shoppingCart } = useShoppingCart();
+  // const { user } = useUser();
+
+  const user = useSelector((state) => state.user);
+
+  const shoppingCart = useSelector((state) => state.shoppingCart);
 
   const itemQuantity = shoppingCart.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
 
@@ -25,15 +29,15 @@ function Header() {
           </Link>
         </Box>
         <Box mr={2}>
-          {
+          <Link to="/sign-in">
+            {
             user
               ? `Hi ${user.firstName}!`
               : (
-                <Link to="/sign-in">
-                  <Button variant="contained" color="primary">Sign In</Button>
-                </Link>
+                <Button variant="contained" color="primary">Sign In</Button>
               )
-          }
+                }
+          </Link>
         </Box>
         <IconButton
           size="large"
