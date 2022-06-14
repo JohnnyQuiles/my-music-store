@@ -1,7 +1,10 @@
-import React, { useContext } from 'react';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import React from 'react';
+import ReplayIcon from '@mui/icons-material/Replay';
+import HomeIcon from '@mui/icons-material/Home';
+import { useDispatch, useSelector } from 'react-redux';
+import CartItem from '../components/CartItem';
 import Layout from '../components/Layout';
-import ShoppingCartContext from '../context/ShoppingCartContext';
 
 // const sampleShoppingCart = [
 
@@ -22,41 +25,54 @@ import ShoppingCartContext from '../context/ShoppingCartContext';
 // ];
 
 function CartPage() {
-  const {
-    shoppingCart,
-    removeFromCart,
-  } = useContext(ShoppingCartContext);
+  // const {
+  //   shoppingCart,
+  //   emptyCart,
+  // } = useShoppingCart();
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.shoppingCart);
 
   // We want to display whats in the shopping cart.
   return (
-    <Layout shoppingCart={shoppingCart}>
+    <Layout>
       <Box
         width={1}
         display="flex"
         flexDirection="column"
         alignItems="center"
       >
-        {shoppingCart.map((cartItem) => (
-          <Box p={3} key={cartItem.id}>
-            <Box>
-              {cartItem.title}
-              {' '}
-              - Qty:
-              {cartItem.quantity}
-              {' '}
-              - $
-              {cartItem.price / 100}
-              {' '}
-              total$:
-              {cartItem.total / 100}
-            </Box>
-            <Box>
-              <button type="button" onClick={() => removeFromCart(cartItem.id)}>
-                Remove From cart
-              </button>
-            </Box>
+        {cart.map((cartItem) => (
+          <Box p={3} key={cartItem.id} width="100%" maxWidth={500}>
+            <CartItem cartItem={cartItem} />
           </Box>
         ))}
+        <Box mt={5}>
+          <Box mb={3}>
+            <Button fullWidth variant="contained">Checkout</Button>
+          </Box>
+          <Box mb={3}>
+            <Button
+              fullWidth
+              variant="contained"
+              startIcon={<ReplayIcon />}
+              onClick={() => dispatch({
+                type: 'EMPTY_CART',
+              })}
+            >
+              Empty Cart
+            </Button>
+          </Box>
+          <Box mb={3}>
+            <Button
+              fullWidth
+              variant="contained"
+              startIcon={<HomeIcon />}
+            >
+              Home
+            </Button>
+          </Box>
+        </Box>
       </Box>
     </Layout>
   );
