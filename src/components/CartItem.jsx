@@ -1,17 +1,14 @@
 /* eslint-disable react/prop-types */
-import {
-  Card, CardMedia, IconButton, Typography,
-  Box,
-} from '@mui/material';
-import React from 'react';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useDispatch } from 'react-redux';
-// import { useShoppingCart } from '../context/ShoppingCartContext';
+import {
+  Box, Card, CardMedia, IconButton, Typography,
+} from '@mui/material';
+import { useShoppingCart } from '../reduxStore/shoppingCartState';
 
 function CartItem(props) {
   const { cartItem } = props;
-  // const { removeFromCart } = useShoppingCart();
-  const dispatch = useDispatch();
+
+  const { removeFromCart } = useShoppingCart();
 
   return (
     <Card>
@@ -44,7 +41,7 @@ function CartItem(props) {
           </Typography>
         </Box>
         <Box px={2} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <IconButton onClick={() => dispatch({ type: 'REMOVE_FROM_CART', payload: { productId: cartItem.id } })}>
+          <IconButton onClick={() => removeFromCart(cartItem.id)}>
             <DeleteForeverIcon />
           </IconButton>
         </Box>
