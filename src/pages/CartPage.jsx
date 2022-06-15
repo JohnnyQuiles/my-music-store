@@ -1,8 +1,8 @@
-import { Box, Button } from '@mui/material';
-import React from 'react';
-import ReplayIcon from '@mui/icons-material/Replay';
 import HomeIcon from '@mui/icons-material/Home';
-import { useDispatch, useSelector } from 'react-redux';
+import ReplayIcon from '@mui/icons-material/Replay';
+import { Box, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useShoppingCart } from '../reduxStore/shoppingCartState';
 import CartItem from '../components/CartItem';
 import Layout from '../components/Layout';
 
@@ -25,24 +25,22 @@ import Layout from '../components/Layout';
 // ];
 
 function CartPage() {
-  // const {
-  //   shoppingCart,
-  //   emptyCart,
-  // } = useShoppingCart();
-
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.shoppingCart);
+  const {
+    shoppingCart,
+    emptyCart,
+  } = useShoppingCart();
 
   // We want to display whats in the shopping cart.
+
   return (
-    <Layout>
+    <Layout shoppingCart={shoppingCart}>
       <Box
         width={1}
         display="flex"
         flexDirection="column"
         alignItems="center"
       >
-        {cart.map((cartItem) => (
+        {shoppingCart.map((cartItem) => (
           <Box p={3} key={cartItem.id} width="100%" maxWidth={500}>
             <CartItem cartItem={cartItem} />
           </Box>
@@ -56,21 +54,21 @@ function CartPage() {
               fullWidth
               variant="contained"
               startIcon={<ReplayIcon />}
-              onClick={() => dispatch({
-                type: 'EMPTY_CART',
-              })}
+              onClick={emptyCart}
             >
               Empty Cart
             </Button>
           </Box>
           <Box mb={3}>
-            <Button
-              fullWidth
-              variant="contained"
-              startIcon={<HomeIcon />}
-            >
-              Home
-            </Button>
+            <Link to="/">
+              <Button
+                fullWidth
+                variant="contained"
+                startIcon={<HomeIcon />}
+              >
+                Home
+              </Button>
+            </Link>
           </Box>
         </Box>
       </Box>

@@ -2,19 +2,14 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {
   AppBar, Badge, Box, Button, IconButton, Toolbar, Typography,
 } from '@mui/material';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import '../index.css';
+import { useShoppingCart } from '../reduxStore/shoppingCartState';
 
 function Header() {
-  // const { shoppingCart } = useShoppingCart();
   // const { user } = useUser();
-
-  const user = useSelector((state) => state.user);
-
-  const shoppingCart = useSelector((state) => state.shoppingCart);
+  const { user } = useSelector((state) => state);
+  const { shoppingCart } = useShoppingCart();
 
   const itemQuantity = shoppingCart.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
 
@@ -29,14 +24,14 @@ function Header() {
           </Link>
         </Box>
         <Box mr={2}>
-          <Link to="/sign-in">
+          <Link to="/user">
             {
-            user
-              ? `Hi ${user.firstName}!`
-              : (
-                <Button variant="contained" color="primary">Sign In</Button>
-              )
-                }
+          user
+            ? `Hi ${user.firstName}!`
+            : (
+              <Button variant="contained" color="primary">Sign In</Button>
+            )
+              }
           </Link>
         </Box>
         <IconButton
@@ -44,13 +39,11 @@ function Header() {
           aria-label="Go to shopping cart"
           color="inherit"
         >
-          <Box mr={2}>
-            <Link to="/cart">
-              <Badge badgeContent={itemQuantity} color="primary">
-                <ShoppingCartIcon />
-              </Badge>
-            </Link>
-          </Box>
+          <Link to="/cart">
+            <Badge badgeContent={itemQuantity} color="primary">
+              <ShoppingCartIcon />
+            </Badge>
+          </Link>
         </IconButton>
       </Toolbar>
     </AppBar>

@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 import { Box, Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logInUserRequest } from '../dataFetching';
 import Layout from '../components/Layout';
