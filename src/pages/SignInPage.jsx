@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logInUserRequest } from '../dataFetching';
 import Layout from '../components/Layout';
+import { logIn, logOut } from '../reduxStore/userState';
 
 function SignInPage() {
   // const { user, signIn, signOut } = useUser();
@@ -22,7 +23,7 @@ function SignInPage() {
         // Put the resulting user data in react context over the entire application
         // That it can be accessed from any component in the component tree.
         // signIn(response.data);
-        dispatch({ type: 'LOG_IN', payload: { user: response.data } });
+        dispatch(logIn({ user: response.data }));
       });
   };
 
@@ -33,7 +34,7 @@ function SignInPage() {
         console.log('user sign out response: ', response);
         // Remove the user data from the user context when a user logs out
         // signOut();
-        dispatch({ type: 'LOG_OUT' });
+        dispatch(logOut);
       });
   };
 
